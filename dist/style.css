@@ -21,7 +21,9 @@ header {
 }
 
 h1 {
-    background-color: blue;
+    background-color: blue;    
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
     padding: 10px;
 }
 
