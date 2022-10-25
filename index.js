@@ -8,6 +8,55 @@ const Manager = require("./lib/Manager.js");
 // Team member data
 const myTeam = [];
 
+const employeeQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter Employee Name"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "Enter Employee ID"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter Employee Email Address"
+    },
+    {
+        type: "list",
+        name: "role",
+        message: "Choose Employee Role",
+        choices: ["Engineer", "Intern", "Manager"]
+    }
+]
+
+const engineerQuestions = [
+    {
+        type: "input",
+        name: "github",
+        message: "Enter Employee GitHub Profile Username"
+    }
+]
+
+const internQuestions = [
+    {
+        type: "input",
+        name: "school",
+        message: "Enter Employee School Name"
+    }
+]
+
+const managerQuestions = [
+    {
+        type: "input",
+        name: "office",
+        message: "Enter Employee Office Number"
+    }
+]
+
+
 
 
 // AS A manager
