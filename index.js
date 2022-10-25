@@ -1,4 +1,12 @@
+// These are the requirements - inquirer for prompts and others for their data
 const inquirer = require("inquirer");
+const fs = require("fs");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const Manager = require("./lib/Manager.js");
+
+// Team member data
+const myTeam = [];
 
 
 
