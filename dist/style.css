@@ -34,18 +34,24 @@ h1 {
 
 .engineer, .intern, .manager {
     height: 300px;
-    width: 200px;
+    width: 300px;
+    margin: 15px;
     border: 2px solid black;
     box-shadow: 2px 2px 2px black;
+    border-radius: 2% 2% 5% 5%;
 }
 
 h2 {
     background-color: blue;
-    padding: 5px;
+    border-bottom: 2px solid black;
+    border-radius: 2% 2% 0 0;
+    box-shadow: 1px 1px 1px black;
+    padding: 10px;
 }
 
 p {
     border: 1px solid blue;
+    box-shadow: 1px 1px 1px black;
     margin: 2px;
     padding: 5px;
 }
