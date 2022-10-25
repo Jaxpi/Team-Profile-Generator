@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Jaxpi/Team-Profile-Generator/issues"
   },
-  "homepage": "https://github.com/Jaxpi/Team-Profile-Generator#readme"
+  "homepage": "https://github.com/Jaxpi/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^29.2.2"
+  }
 }
