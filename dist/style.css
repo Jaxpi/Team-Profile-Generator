@@ -6,15 +6,13 @@
 }
 
 body {
-    padding: 10px;
-    border: 2px solid red;
+    background-color: white;
 }
 
 header {
     padding-top: 10px;
     padding-bottom: 10px;
-    margin: 40 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     text-align: center;
     font-size: 48px;
     color: black;
@@ -23,18 +21,31 @@ header {
 }
 
 h1 {
-    border: 2px solid red;
+    background-color: blue;
+    padding: 10px;
 }
 
 .teamCards {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    border: 2px solid red;;
+    margin-top: 20px;
 }
 
 .engineer, .intern, .manager {
     height: 300px;
     width: 200px;
-    border: 2px solid red;
+    border: 2px solid black;
+    box-shadow: 2px 2px 2px black;
+}
+
+h2 {
+    background-color: blue;
+    padding: 5px;
+}
+
+p {
+    border: 1px solid blue;
+    margin: 2px;
+    padding: 5px;
 }
