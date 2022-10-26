@@ -1,7 +1,7 @@
 // These are the requirements - inquirer for prompts and others for their data
 const inquirer = require("inquirer");
 const fs = require("fs");
-const MarkDown = require("./dist/index.html");
+// const MarkDown = require("./dist/index.html");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
@@ -89,6 +89,20 @@ const runPrompts = () => {
 
 class MarkDown {
     // This is the function for applying the data received to the new html file and the template to apply it to
+
+    const writeFile = data => {
+        fs.generateHtml('./dist/index.html', data, err => {
+            // if there is an error 
+            if (err) {
+                console.log(err);
+                return;
+            // when the profile has been created 
+            } else {
+                console.log("Your team profile has been successfully created! Please check out the index.html")
+            }
+        })
+    }; 
+
     static generateHtml(answers) {
         return `
         <!DOCTYPE html>
