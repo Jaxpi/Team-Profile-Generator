@@ -1,5 +1,5 @@
 # Team Profile Generator
-<img src="assets/images/mainscreenshot.jpg" style="width:300px; height auto;">
+<img src="dist/mainscreenshot.jpg" style="width:300px; height auto;">
 
 ## Description
 
