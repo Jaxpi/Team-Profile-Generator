@@ -1,6 +1,7 @@
 // These are the requirements - inquirer for prompts and others for their data
 const inquirer = require("inquirer");
 const fs = require("fs");
+const MarkDown = require("./dist/index.html");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
@@ -67,8 +68,75 @@ const runPrompts = () => {
     } else {
         managerPrompt
     }
+
+    return inquirer.prompt(questions)
+    .then((answers) => {
+        const mark = MarkDown.generateHtml(answers)
+        fs.writeFile("index.html", mark, function(err) {
+            if (err) {
+                console.log("Error")
+            } else {
+                console.log("New html file available to open in browser")
+            }
+        })
+        console.log(mark)
+        return answers
+    })
+    .catch((error)=> {
+        console.log(error)
+    })
 }
 
+class MarkDown {
+    // This is the function for applying the data received to the new html file and the template to apply it to
+    static generateHtml(answers) {
+        return `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="./style.css">
+            <title>Team Profile</title>
+        </head>
+        
+        <body>
+            <header>
+                <h1>My Team</h1>
+            </header>
+          
+            <main class="teamCards">
+                <section class="engineer" id="engineer">
+                  <h2>${answers.name}<br>Engineer</h2><br>
+                  <p>ID: ${answers.id}</p><br>
+                  <p>Email: ${answers.email}</p><br>
+                  <p>GitHub: ${answers.email}</p>
+                </section>
+        
+                <section class="intern" id="intern">
+                    <h2>${answers.name}<br>Intern</h2><br>
+                    <p>ID: ${answers.id}</p><br>
+                    <p>Email: ${answers.email}</p><br>
+                    <p>School: ${answers.school}</p>
+                </section>
+                <section class="manager" id="manager">
+                    <h2>${answers.name}<br>Manager</h2><br>
+                    <p>ID: ${answers.id}</p><br>
+                    <p>Email: ${answers.email}</p><br>
+                    <p>Office #: ${answers.office}</p>
+                </section>  
+                
+            </main>
+        
+            <script src="script.js"></script>
+        </body>
+        </html>
+    `
+    }
+}
+
+module.exports = MarkDown
 
 // AS A manager I WANT to generate a webpage that displays my team's basic info SO THAT I have quick access to their emails and GitHub profiles
 // GIVEN a command-line application that accepts user input
