@@ -90,20 +90,7 @@ const runPrompts = () => {
 class MarkDown {
     // This is the function for applying the data received to the new html file and the template to apply it to
 
-    const writeFile = data => {
-        fs.generateHtml('./dist/index.html', data, err => {
-            // if there is an error 
-            if (err) {
-                console.log(err);
-                return;
-            // when the profile has been created 
-            } else {
-                console.log("Your team profile has been successfully created! Please check out the index.html")
-            }
-        })
-    }; 
-
-    static generateHtml(answers) {
+    generateHtml = answers => {
         return `
         <!DOCTYPE html>
         <html lang="en">
