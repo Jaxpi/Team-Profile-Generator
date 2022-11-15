@@ -5,120 +5,143 @@ const fs = require("fs");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
-
-inquirer.prompt (
-    [{
-        type: "list",
-        name: "role",
-        message: "Choose Employee Role",
-        choices: ["Engineer", "Intern", "Manager"]
-    }]
-).then (
-    if (choices === Engineer) {
-        inquirer.prompt (engineerPrompt);
-    } else if (choices === Intern) {
-        inquirer.prompt (internPrompt);
-    } else {
-        inquirer.prompt (managerPrompt)
-    }
-).then (
-    function (employeePrompts) {
-        console.log(answers.userAnswer)
-    }
-).then (
-    function (answers) {
-        console.log(answers.userAnswer)
-    }
-)
-
-
 // Team member data
 const myTeam = [];
 
 // These are the prompts for the user
 const employeePrompts = [
     {
-        type: "input",
-        name: "name",
-        message: "Enter Employee Name"
+      type: "input",
+      name: "name",
+      message: "Enter Employee Name",
     },
     {
-        type: "input",
-        name: "id",
-        message: "Enter Employee ID"
+      type: "input",
+      name: "id",
+      message: "Enter Employee ID",
     },
     {
-        type: "input",
-        name: "email",
-        message: "Enter Employee Email Address"
+      type: "input",
+      name: "email",
+      message: "Enter Employee Email Address",
     },
-]
-
-const engineerPrompt = [
+  ];
+  
+  const engineerPrompt = [
     {
-        type: "input",
-        name: "github",
-        message: "Enter Employee GitHub Profile Username"
-    }
-]
-
-const internPrompt = [
+      type: "input",
+      name: "github",
+      message: "Enter Employee GitHub Profile Username",
+    },
+  ];
+  
+  const internPrompt = [
     {
-        type: "input",
-        name: "school",
-        message: "Enter Employee School Name"
-    }
-]
-
-const managerPrompt = [
+      type: "input",
+      name: "school",
+      message: "Enter Employee School Name",
+    },
+  ];
+  
+  const managerPrompt = [
     {
-        type: "input",
-        name: "office",
-        message: "Enter Employee Office Number"
-    }
-]
+      type: "input",
+      name: "office",
+      message: "Enter Employee Office Number",
+    },
+  ];
 
-// This is the method for the user to interact with
-const runPrompts = () => {
-    inquirer.prompt(employeePrompts)
-    [{
-        type: "list",
-        name: "role",
-        message: "Choose Employee Role",
-        choices: ["Engineer", "Intern", "Manager"]
-    }]
-
-    if (choices === Engineer) {
-        engineerPrompt;
-    } else if (choices === Intern) {
-        internPrompt;
+function init() {
+inquirer
+  .prompt([
+    {
+      type: "list",
+      name: "role",
+      message: "Choose Employee Role",
+      choices: ["Engineer", "Intern", "Manager", "Finished"],
+    },
+  ])
+  .then(function ({role}) {
+    console.log(role);
+    if (role != "Finished") {
+        empData(role);
     } else {
-        managerPrompt
+        //write html with team data
+        console.log(myTeam);
+        generateHtml()
     }
+  })
+}
 
-    return inquirer.prompt(questions)
-    .then((answers) => {
-        const mark = MarkDown.generateHtml(answers)
-        fs.writeFile("index.html", mark, function(err) {
-            if (err) {
-                console.log("Error")
-            } else {
-                console.log("New html file available to open in browser")
-            }
-        })
-        console.log(mark)
-        return answers
-    })
-    .catch((error)=> {
-        console.log(error)
+function empData(role) {
+    inquirer.prompt(employeePrompts)
+    .then (async function({name, id, email}) {
+        if (role === "Engineer") {
+          const {github} = await engPrompt();
+          const newEng = new Engineer(id, name, email, github);
+          myTeam.push(newEng)
+        } else if (role === "Intern") {
+            const {school} = await intPrompt();
+            const newInt = new Intern(id, name, email, school);
+            myTeam.push(newInt)
+        } else {
+            const {office} = await mngPrompt();
+            const newMng = new Manager(id, name, email, office);
+            myTeam.push(newMng)
+        }
+        init();
     })
 }
 
-class MarkDown {
-    // This is the function for applying the data received to the new html file and the template to apply it to
+init();
 
-    generateHtml = answers => {
-        return `
+function engPrompt() {
+    return inquirer.prompt(engineerPrompt);
+}
+
+function mngPrompt() {
+    return inquirer.prompt(managerPrompt);
+}
+
+function intPrompt() {
+    return inquirer.prompt(internPrompt);
+}
+
+// This is the method for the user to interact with
+const runPrompts = () => {
+  inquirer.prompt(employeePrompts)[
+    {
+      type: "list",
+      name: "role",
+      message: "Choose Employee Role",
+      choices: ["Engineer", "Intern", "Manager"],
+    }
+  ];
+
+
+  return inquirer
+    .prompt(questions)
+    .then((answers) => {
+      const mark = MarkDown.generateHtml(answers);
+      fs.writeFile("index.html", mark, function (err) {
+        if (err) {
+          console.log("Error");
+        } else {
+          console.log("New html file available to open in browser");
+        }
+      });
+      console.log(mark);
+      return answers;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+  // This is the function for applying the data received to the new html file and the template to apply it to
+
+  function generateHtml() {
+    return `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -135,36 +158,47 @@ class MarkDown {
             </header>
           
             <main class="teamCards">
-                <section class="engineer" id="engineer">
-                  <h2>${answers.name}<br>Engineer</h2><br>
-                  <p>ID: ${answers.id}</p><br>
-                  <p>Email: ${answers.email}</p><br>
-                  <p>GitHub: ${answers.email}</p>
-                </section>
-        
-                <section class="intern" id="intern">
-                    <h2>${answers.name}<br>Intern</h2><br>
-                    <p>ID: ${answers.id}</p><br>
-                    <p>Email: ${answers.email}</p><br>
-                    <p>School: ${answers.school}</p>
-                </section>
-                <section class="manager" id="manager">
-                    <h2>${answers.name}<br>Manager</h2><br>
-                    <p>ID: ${answers.id}</p><br>
-                    <p>Email: ${answers.email}</p><br>
-                    <p>Office #: ${answers.office}</p>
-                </section>  
-                
+                ${generateCards()}                
             </main>
         
             <script src="script.js"></script>
         </body>
         </html>
-    `
-    }
-}
+    `;
+  }
 
-module.exports = MarkDown
+  function generateCards() {
+    let generatedCards = "";
+    for (i = 0; i<myTeam.length; i++) {
+        const employee = myTeam[i];
+        const role = employee.getRole();
+        if (role === "Engineer") {
+            generatedCards += `<section class="engineer" id="engineer">
+            <h2>${employee.name}<br>Engineer</h2><br>
+            <p>ID: ${employee.id}</p><br>
+            <p>Email: ${employee.email}</p><br>
+            <p>GitHub: ${employee.github}</p>
+          </section>`
+        }
+        if (role === "Intern") {
+            generatedCards += `<section class="intern" id="intern">
+            <h2>${employee.name}<br>Intern</h2><br>
+            <p>ID: ${employee.id}</p><br>
+            <p>Email: ${employee.email}</p><br>
+            <p>School: ${employee.school}</p>
+          </section>`
+        }
+        if (role === "Manager") {
+            generatedCards += `<section class="manager" id="manager">
+            <h2>${employee.name}<br>Manager</h2><br>
+            <p>ID: ${employee.id}</p><br>
+            <p>Email: ${employee.email}</p><br>
+            <p>Office: ${employee.office}</p>
+          </section>`
+        }
+    }
+    return generatedCards;
+  }
 
 // AS A manager I WANT to generate a webpage that displays my team's basic info SO THAT I have quick access to their emails and GitHub profiles
 // GIVEN a command-line application that accepts user input
