@@ -107,48 +107,17 @@ function intPrompt() {
     return inquirer.prompt(internPrompt);
 }
 
-// This is the method for the user to interact with
-const runPrompts = () => {
-  inquirer.prompt(employeePrompts)[
-    {
-      type: "list",
-      name: "role",
-      message: "Choose Employee Role",
-      choices: ["Engineer", "Intern", "Manager"],
-    }
-  ];
-
-
-  return inquirer
-    .prompt(questions)
-    .then((answers) => {
-      const mark = MarkDown.generateHtml(answers);
-      fs.writeFile("index.html", mark, function (err) {
-        if (err) {
-          console.log("Error");
-        } else {
-          console.log("New html file available to open in browser");
-        }
-      });
-      console.log(mark);
-      return answers;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
   // This is the function for applying the data received to the new html file and the template to apply it to
 
   function generateHtml() {
-    return `
+    const newDoc = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="./style.css">
+            <link rel="stylesheet" type="text/css" href="dist/style.css">
             <title>Team Profile</title>
         </head>
         
@@ -165,6 +134,14 @@ const runPrompts = () => {
         </body>
         </html>
     `;
+    fs.writeFile("index.html", newDoc, (err) => {
+        if (err) {
+            console.log("Error");
+          } else {
+            console.log("New html file available to open in browser");
+          }
+        }
+    )
   }
 
   function generateCards() {
