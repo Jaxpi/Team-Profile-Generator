@@ -5,12 +5,12 @@ describe("Engineer Class", () => {
     describe("Initialization", () => {
         it("should make an object with name, ID, email, and github properties", () => {
             //arrange
-            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            const engineer = new Engineer("Max", 1234, "MaxO@gmail.com", "github.com/MaxTheGreat")
             //act
             //assert
-            expect(employee).toEqual({
+            expect(engineer).toEqual({
                 name: "Max",
-                id: "1234",
+                id: 1234,
                 email: "MaxO@gmail.com",
                 github: "github.com/MaxTheGreat"
             })

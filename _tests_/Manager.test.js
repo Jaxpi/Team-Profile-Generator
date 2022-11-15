@@ -5,14 +5,14 @@ describe("Manager Class", () => {
     describe("Initialization", () => {
         it("should make an object with name, ID, email, and office number properties", () => {
             //arrange
-            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            const manager = new Manager("Max", 1234, "MaxO@gmail.com", "505")
             //act
             //assert
-            expect(employee).toEqual({
+            expect(manager).toEqual({
                 name: "Max",
-                id: "1234",
+                id: 1234,
                 email: "MaxO@gmail.com",
-                office: "505"
+                officeNumber: "505"
             })
         })
     })

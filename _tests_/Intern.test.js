@@ -5,12 +5,12 @@ describe("Intern Class", () => {
     describe("Initialization", () => {
         it("should make an object with name, ID, email, and school name properties", () => {
             //arrange
-            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            const intern = new Intern("Max", 1234, "MaxO@gmail.com", "Columbia University")
             //act
             //assert
-            expect(employee).toEqual({
+            expect(intern).toEqual({
                 name: "Max",
-                id: "1234",
+                id: 1234,
                 email: "MaxO@gmail.com",
                 school: "Columbia University"
             })

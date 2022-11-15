@@ -6,6 +6,32 @@ const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
 
+inquirer.prompt (
+    [{
+        type: "list",
+        name: "role",
+        message: "Choose Employee Role",
+        choices: ["Engineer", "Intern", "Manager"]
+    }]
+).then (
+    if (choices === Engineer) {
+        inquirer.prompt (engineerPrompt);
+    } else if (choices === Intern) {
+        inquirer.prompt (internPrompt);
+    } else {
+        inquirer.prompt (managerPrompt)
+    }
+).then (
+    function (employeePrompts) {
+        console.log(answers.userAnswer)
+    }
+).then (
+    function (answers) {
+        console.log(answers.userAnswer)
+    }
+)
+
+
 // Team member data
 const myTeam = [];
 
@@ -54,6 +80,7 @@ const managerPrompt = [
 
 // This is the method for the user to interact with
 const runPrompts = () => {
+    inquirer.prompt(employeePrompts)
     [{
         type: "list",
         name: "role",

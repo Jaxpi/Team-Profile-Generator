@@ -9,7 +9,7 @@ describe("Employee Class", () => {
             //assert
             expect(employee).toEqual({
                 name: "Max",
-                id: "1234",
+                id: 1234,
                 email: "MaxO@gmail.com"
             })
         })
