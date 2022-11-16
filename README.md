@@ -3,11 +3,11 @@
 
 ## Description
 
-This app creates an html file containing information about a team of employees, laid out in an easy-to-view format to keep track of and share this information. The file is created through the command line by the user responding to prompts to populate the data.
+This app creates an html file containing information about a team of employees, laid out in an easy-to-view format to keep track of and share this information. The user can click on each team member's email to have that address pre-populated in the "to" section of their email program, and can click on any engineer's GitHub profile name to be directed in the browser to that employee's GitHub profile. The file is created through the command line by the user responding to prompts to populate the data.
 
 ## Usage
 
-The user should open their command line terminal and run the application. They will be prompted to provide information about the employees on their team. Once all the prompts are complete the user will be asked whether another employee should be added. Upon a response of yes, the prompts will repeat for the new employee. Upon a response of no, the html file will be created including all the provided information. Opening the html file in a browser will allow the user to see the information for viewing and/or sharing easily.
+The user should open their command line terminal and run the application. They will be prompted to provide information about the employees on their team. They will be asked to select the role of the employee, their name, id, and email, and then if they are a manager - their office number, if they are an engineer - their GitHub profile name, and if they are an intern - their school. Once all the employees are entered the user can select "Finished" to end the program and generate the index.html file with their team's information, which they can view in their browser for viewing and/or sharing easily.
 
 ## Video Walkthrough
 
