@@ -170,7 +170,7 @@ function intPrompt() {
             <h2>${employee.name}<br>Manager</h2><br>
             <p>ID: ${employee.id}</p><br>
             <p>Email: ${employee.email}</p><br>
-            <p>Office: ${employee.office}</p>
+            <p>Office: ${employee.officeNumber}</p>
           </section>`
         }
     }
