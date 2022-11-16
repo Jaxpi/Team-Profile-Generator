@@ -78,15 +78,15 @@ function empData(role) {
     .then (async function({name, id, email}) {
         if (role === "Engineer") {
           const {github} = await engPrompt();
-          const newEng = new Engineer(id, name, email, github);
+          const newEng = new Engineer(name, id, email, github);
           myTeam.push(newEng)
         } else if (role === "Intern") {
             const {school} = await intPrompt();
-            const newInt = new Intern(id, name, email, school);
+            const newInt = new Intern(name, id, email, school);
             myTeam.push(newInt)
         } else {
             const {office} = await mngPrompt();
-            const newMng = new Manager(id, name, email, office);
+            const newMng = new Manager(name, id, email, office);
             myTeam.push(newMng)
         }
         init();
