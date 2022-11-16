@@ -9,6 +9,11 @@ This app creates an html file containing information about a team of employees, 
 
 The user should open their command line terminal and run the application. They will be prompted to provide information about the employees on their team. Once all the prompts are complete the user will be asked whether another employee should be added. Upon a response of yes, the prompts will repeat for the new employee. Upon a response of no, the html file will be created including all the provided information. Opening the html file in a browser will allow the user to see the information for viewing and/or sharing easily.
 
+## Video Walkthrough
+
+Please watch this video to see a walkthrough of the tests and usage of the application:
+https://watch.screencastify.com/v/wQ1a5ntoIWti2H6l3ouJ
+
 ## License
 
 MIT License
