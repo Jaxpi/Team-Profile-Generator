@@ -14,4 +14,24 @@ describe("Employee Class", () => {
             })
         })
     })
+    describe("methods", () => {
+        it("getName should return employee name while initializing Employee class", () => {
+            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            expect(employee.getName()).toEqual("Max")
+        })
+        it("getId should return employee id while initializing Employee class", () => {
+            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            expect(employee.getId()).toEqual(1234)
+        })
+        it("getEmail should return employee email while initializing Employee class", () => {
+            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            expect(employee.getEmail()).toEqual("MaxO@gmail.com")
+        })
+        it("getRole should return employee role while initializing Employee class", () => {
+            const employee = new Employee("Max", 1234, "MaxO@gmail.com")
+            expect(employee.getRole()).toEqual("Employee")
+        })
+    })
 })
+
+
